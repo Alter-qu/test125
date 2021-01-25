@@ -130,7 +130,7 @@ class Test extends Controller
     public function export()
     {
         //该处应为从数据库中查出数据，这里仅作演示：
-        $data = Db::name('test')->select();
+        $data = Db::table('test')->select();
         //因不同需求，文件名不同，需要自己构建
         $fileName = '书籍表';
         //调用公共方法
