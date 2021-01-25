@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div>
+        <a href="{:url('Test/export')}">导出</a>
+        <table>
+            <tr>
+                <td>图像</td>
+                <td>书名</td>
+                <td>作者</td>
+                <td>价格</td>
+                <td>操作</td>
+            </tr>
+            {volist name="data" id="vo"}
+            <tr>
+                <td><img src="/uploads/{$vo.image}" style="width: 100px;height: 150px"></td>
+                <td>{$vo.book}</td>
+                <td>{$vo.author}</td>
+                <td>{$vo.price}</td>
+                <td>
+                    <a href="{:url('Test/edit')}?id={$vo.id}">下架</a>
+                </td>
+            </tr>
+            {/volist}
+        </table>
+        {$data->render()}
+    </div>
+</body>
+</html>

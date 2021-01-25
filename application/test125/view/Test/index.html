@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div>
+        <form action="{:url('Test/save')}" method="post" enctype="multipart/form-data">
+            <ul type="none">
+            <li><input type="file" name="image"></li>
+                <li><input type="text" name="book" id="book" placeholder="书名"></li>
+            <li><input type="text" name="author" placeholder="作者"></li>
+            <li><input type="text" name="price" placeholder="价格"></li>
+            <li><select name="status">
+                <option value="0">暂不上架</option>
+                <option value="1">马上上架</option>
+            </select></li>
+            <li><input type="submit"></li>
+            </ul>
+        </form>
+    </div>
+</body>
+</html>
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
+</script>
+<script>
+    $(document).ready(function(){
+        $("#book").blur(function(){
+            var book=$(this).val();
+            //alert(book)
+            $.ajax({
+                type: "POST",
+                url: "{:url('Test/check')}",
+                data: {book},
+                success: function(e){
+                    if (e.code==500){
+                        alert('该书已存在，请重新输入')
+                        return false;
+                    }
+                }
+            });
+        });
+    });
+</script>
